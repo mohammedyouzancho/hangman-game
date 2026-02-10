@@ -1,17 +1,18 @@
 let selectedWord = "";
-let hintText = "";
 let tries = 6;
 let guessed = [];
 let parts;
 let gameOverX;
 
-// DOM
 const wordDiv = document.getElementById("word");
 const lettersDiv = document.getElementById("letters");
 const triesSpan = document.getElementById("tries");
 const message = document.getElementById("message");
 const hintSpan = document.getElementById("hint");
 const restartBtn = document.getElementById("restart");
+
+const winSound = document.getElementById("winSound");
+const loseSound = document.getElementById("loseSound");
 
 startGame();
 restartBtn.addEventListener("click", startGame);
@@ -32,19 +33,14 @@ function startGame() {
   fetch("words.txt")
     .then(res => res.text())
     .then(text => {
-      const lines = text
-        .split("\n")
-        .map(l => l.trim())
-        .filter(Boolean);
-
+      const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
       const randomLine = lines[Math.floor(Math.random() * lines.length)];
       const [category, words] = randomLine.split(":");
 
       const wordList = words.split(",");
       selectedWord = wordList[Math.floor(Math.random() * wordList.length)];
 
-      hintText = category;
-      hintSpan.textContent = hintText;
+      hintSpan.textContent = category;
 
       displayWord();
       createButtons();
@@ -92,12 +88,16 @@ function showPart() {
 function checkGame() {
   if (!wordDiv.textContent.includes("_")) {
     message.textContent = "🎉 You won!";
+    winSound.currentTime = 0;
+    winSound.play();
     endGame();
   }
 
   if (tries === 0) {
     message.textContent = "💀 Game over! Word was: " + selectedWord;
     gameOverX.style.display = "block";
+    loseSound.currentTime = 0;
+    loseSound.play();
     endGame();
   }
 }
