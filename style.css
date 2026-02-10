@@ -6,7 +6,6 @@ html, body {
   width: 100%;
   height: 100%;
   margin: 0;
-  overflow: hidden;
 }
 
 body {
@@ -16,36 +15,30 @@ body {
 
   display: flex;
   justify-content: center;
-
-  /* ⬇ push content up, leaving space at bottom */
   align-items: flex-start;
-  padding-top: 20px;
-  padding-bottom: 60px;
+
+  /* ⬇ real bottom spacing */
+  padding-top: 12px;
+  padding-bottom: 140px;
 }
 
-/* Game container */
 .container {
   width: 100%;
   max-width: 1100px;
-  max-height: calc(100vh - 80px); /* respects bottom spacing */
-  padding: 15px 20px 20px;
   text-align: center;
 }
 
-/* Title */
 h1 {
   margin: 0 0 4px;
   font-size: 2.4rem;
 }
 
-/* Hint */
 .hint {
   font-size: 1rem;
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   color: #93c5fd;
 }
 
-/* Layout */
 .game {
   display: flex;
   justify-content: center;
@@ -59,7 +52,7 @@ h1 {
   background: #1f2937;
   border-radius: 16px;
   padding: 22px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
 /* Hangman */
@@ -93,7 +86,6 @@ h1 {
   left: 130px;
 }
 
-/* Body parts */
 .part {
   display: none;
   position: absolute;
@@ -147,7 +139,6 @@ h1 {
   transform: rotate(30deg);
 }
 
-/* Game over X */
 .game-over-x {
   display: none;
   position: absolute;
@@ -181,7 +172,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 #letters button {
@@ -189,21 +180,14 @@ h1 {
   color: #e5e7eb;
   border: none;
   border-radius: 8px;
-  padding: 9px 13px;
-  font-size: 14px;
+  padding: 10px 14px;
+  font-size: 15px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-}
-
-#letters button:hover:not(:disabled) {
-  background: #60a5fa;
-  transform: translateY(-2px);
 }
 
 #letters button:disabled {
   background: #111827;
   color: #6b7280;
-  cursor: not-allowed;
 }
 
 /* Message */
@@ -215,17 +199,40 @@ h1 {
 /* Restart */
 #restart {
   margin-top: 16px;
-  padding: 11px 22px;
+  padding: 12px 22px;
   font-size: 15px;
   border: none;
   border-radius: 10px;
   background: #22c55e;
   color: #022c22;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
 }
 
-#restart:hover {
-  background: #4ade80;
-  transform: scale(1.05);
+/* 📱 Mobile */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 100px; /* ⬇ extra mobile spacing */
+  }
+
+  .game {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .hangman-card,
+  .info-card {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  #letters button {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  #restart {
+    width: 100%;
+  }
 }
