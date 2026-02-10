@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+/* Modern mobile-safe viewport */
 html, body {
   width: 100%;
   height: 100%;
@@ -13,36 +14,46 @@ body {
   background: linear-gradient(135deg, #1f2933, #111827);
   color: #e5e7eb;
 
+  /* ✅ mobile-safe full height */
+  min-height: 100svh;
+
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 
-  /* ⬇ real bottom spacing */
-  padding-top: 12px;
-  padding-bottom: 140px;
+  overflow: hidden; /* 🚫 no scroll */
 }
 
+/* Game container */
 .container {
   width: 100%;
   max-width: 1100px;
+
+  /* keep content inside screen */
+  max-height: 100%;
+  padding: 12px 16px;
+
   text-align: center;
 }
 
+/* Title */
 h1 {
   margin: 0 0 4px;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
 }
 
+/* Hint */
 .hint {
   font-size: 1rem;
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   color: #93c5fd;
 }
 
+/* Layout */
 .game {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 32px;
   flex-wrap: wrap;
 }
 
@@ -51,26 +62,26 @@ h1 {
 .info-card {
   background: #1f2937;
   border-radius: 16px;
-  padding: 22px;
+  padding: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
 /* Hangman */
 .hangman {
   position: relative;
-  width: 180px;
-  height: 280px;
+  width: 170px;
+  height: 260px;
 }
 
 .pole {
   width: 10px;
-  height: 280px;
+  height: 260px;
   background: #e5e7eb;
   position: absolute;
 }
 
 .beam {
-  width: 140px;
+  width: 130px;
   height: 10px;
   background: #e5e7eb;
   position: absolute;
@@ -79,13 +90,14 @@ h1 {
 
 .rope {
   width: 2px;
-  height: 45px;
+  height: 40px;
   background: #e5e7eb;
   position: absolute;
   top: 10px;
-  left: 130px;
+  left: 120px;
 }
 
+/* Body parts */
 .part {
   display: none;
   position: absolute;
@@ -93,78 +105,79 @@ h1 {
 }
 
 .head {
-  width: 45px;
-  height: 45px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  top: 55px;
-  left: 110px;
+  top: 52px;
+  left: 102px;
 }
 
 .body {
   width: 6px;
-  height: 65px;
-  top: 100px;
-  left: 132px;
+  height: 60px;
+  top: 92px;
+  left: 121px;
 }
 
 .left-arm {
-  width: 40px;
+  width: 38px;
   height: 5px;
-  top: 115px;
-  left: 90px;
+  top: 108px;
+  left: 86px;
   transform: rotate(-30deg);
 }
 
 .right-arm {
-  width: 40px;
+  width: 38px;
   height: 5px;
-  top: 115px;
-  left: 132px;
+  top: 108px;
+  left: 121px;
   transform: rotate(30deg);
 }
 
 .left-leg {
-  width: 40px;
+  width: 38px;
   height: 5px;
-  top: 170px;
-  left: 90px;
+  top: 158px;
+  left: 86px;
   transform: rotate(-30deg);
 }
 
 .right-leg {
-  width: 40px;
+  width: 38px;
   height: 5px;
-  top: 170px;
-  left: 132px;
+  top: 158px;
+  left: 121px;
   transform: rotate(30deg);
 }
 
+/* Game over X */
 .game-over-x {
   display: none;
   position: absolute;
-  top: 60px;
-  left: 132px;
+  top: 55px;
+  left: 121px;
   transform: translateX(-50%);
-  font-size: 130px;
+  font-size: 120px;
   color: #ef4444;
   font-weight: bold;
   opacity: 0.85;
 }
 
-/* Info */
+/* Info card */
 .info-card {
-  width: 360px;
+  width: 350px;
 }
 
 #word {
-  font-size: 2.2rem;
-  letter-spacing: 12px;
-  margin: 12px 0;
+  font-size: 2rem;
+  letter-spacing: 10px;
+  margin: 10px 0;
 }
 
 .tries {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
 }
 
 /* Letters */
@@ -192,14 +205,14 @@ h1 {
 
 /* Message */
 #message {
-  font-size: 1.15rem;
-  margin-top: 10px;
+  font-size: 1.1rem;
+  margin-top: 8px;
 }
 
 /* Restart */
 #restart {
-  margin-top: 16px;
-  padding: 12px 22px;
+  margin-top: 14px;
+  padding: 12px 20px;
   font-size: 15px;
   border: none;
   border-radius: 10px;
@@ -208,16 +221,13 @@ h1 {
   cursor: pointer;
 }
 
-/* 📱 Mobile */
+/* 📱 Mobile layout */
 @media (max-width: 768px) {
-  body {
-    padding-bottom: 100px; /* ⬇ extra mobile spacing */
-  }
 
   .game {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
   }
 
   .hangman-card,
