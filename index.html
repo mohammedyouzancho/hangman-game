@@ -3,18 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Hangman Game</title>
+
+  <!-- Mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Page icon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div class="container">
     <h1>🎯 Hangman</h1>
+
     <p class="hint">
       Hint: <span id="hint"></span>
     </p>
 
     <div class="game">
-      <!-- Hangman drawing -->
+
+      <!-- Hangman card -->
       <div class="hangman-card">
         <div class="hangman">
           <div class="pole"></div>
@@ -32,7 +41,7 @@
         </div>
       </div>
 
-      <!-- Game info -->
+      <!-- Info card -->
       <div class="info-card">
         <p id="word"></p>
 
@@ -46,8 +55,13 @@
 
         <button id="restart">Restart</button>
       </div>
+
     </div>
   </div>
+
+  <!-- 🔊 Sounds -->
+  <audio id="winSound" src="win.mp3" preload="auto"></audio>
+  <audio id="loseSound" src="lose.mp3" preload="auto"></audio>
 
   <script src="script.js"></script>
 </body>
